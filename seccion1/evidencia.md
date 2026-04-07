@@ -1,4 +1,4 @@
-Research questions:
+#Research questions:
 
 1. What is LUKS, and what is its relationship with dm-crypt in the Linux kernel? Explain the role of the device mapper in the encryption process.
 LUKS (Linux Unified Key Setup) is a standard for disk encryption in Linux, according to Boutnaru (2025); it works on top of the dm-crypt, that’s a"transparent disk encryption subsystem in the Linux kernel...implemented as a device mapper target" (Dm-crypt - ArchWiki, n.d.). In the encryption process, the device mapper acts as the foundational framework for mapping physical block devices to virtual ones, as explained in Boutnaru’s (2025) blog ‘The Linux Concept Journey — dm (Device Mapper).
@@ -12,4 +12,27 @@ FDE encrypts the whole disk, including the operating system, referencing Bitdefe
 4. Explain what happens during the boot process of a system with LUKS + LVM: at what point is the decryption password requested and what role does GRUB play in this process?
 	During boot, GRUB (GRand Unified Bootloader) loads the Linux kernel and initramfs (Lenovo, 2023). Then, in the initramfs stage, the system requests the LUKS decryption passphrase to unlock the encrypted disk, according to Debian GNU/Linux Installation Guide (n.d.). Once the user provides the correct passphrase, LVM activates the LVs, and the system continues booting normally.
 
+#Screenshot List – Section 1
+
+1.1 Start of the Debian installation process (Graphical Install mode).
+
+1.2 Partitioning configuration using the option “use entire disk and set up encrypted LVM”.
+
+1.3 Creation of logical volumes (/, swap, /home).
+
+1.4 Disk encryption setup with LUKS (passphrase creation).
+
+1.5 User creation and hostname configuration.
+
+1.6 Completion of the installation and software selection.
+
+1.7 System boot asking for the passphrase to unlock the encrypted disk.
+
+1.8 System verification using commands:
+
+lsblk
+sudo pvs
+sudo vgs
+sudo lvs
+sudo cryptsetup status sda5_crypt
 
